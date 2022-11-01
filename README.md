@@ -1,5 +1,10 @@
 <p align="center">
-  <img src="documentation/logo.png" />
+
+<!--
+Add the syeta Flutter logo
+<img src="documentation/logo.png" />
+-->  
+
 </p>
 <h1 align="center">Developer Guide</h1>
 
@@ -13,10 +18,7 @@
 
 ## 🧐 About  <a name = "about"></a>
 
-Axienta’s Vantage Medical Rep Information System (MRIS) is a web based, cloud ready, real-time solution that does a seamless replication of the marketing representative’s daily routine, by recording all required information of the executive while he is on the move.
-Axienta has the Sales Force Automation System (SFAS) which is also web based and it is the most updated System  now.
-Idea of this project is to combine those 2 systems in to a one core system.  
-As for the start, initial milestone is to complete the MRIS side of features in the mobile app.
+Syeta Flutter Viewmodel starter kit.
 
 ## 🏁 Project Set up  <a name = "setup"></a>
 

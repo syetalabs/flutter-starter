@@ -1,10 +1,9 @@
 <p align="center">
 
 <!--
-Add the syeta Flutter logo
+Add the Syeta Flutter logo
 <img src="documentation/logo.png" />
--->  
-
+-->
 </p>
 <h1 align="center">Developer Guide</h1>
 
@@ -14,7 +13,7 @@ Add the syeta Flutter logo
 - [Project Architecture](#archi)
 - [Development](#dev)
 - [Deployment](#dep)
-- [Improvements and Suggestions](#imp)
+- [TODO](#imp)
 
 ## 🧐 About  <a name = "about"></a>
 
@@ -42,25 +41,14 @@ Android studio is the recommended IDE for the development.
 Access the build configurations through the edit configurations button.
 
 <p align="center">
-  <img src="documentation/1.png" />
-</p>
+ <img src="documentation/1.png" /></p>
 
 
 To get the Dev flavor set the build configuration like below by setting the build flavor to dev and selecting the corresponding data entry file.
 
 <p align="center">
-  <img src="documentation/devf.png" />
-</p>
+ <img src="documentation/devf.png" /></p>
 
-### DB Browser for SQLite
-[ DB Browser for SQLite ](https://sqlitebrowser.org/) is the software that used to query the local database of the android device.
-Database can be retrieved through:
-Device manager > select the device > data > data > com.vantage.mris.dev > databases > products.db
- <p align="center">
-  <img src="documentation/databse.png" />
-</p>
-
-Now everything is set up and you are good to start the development.
 
 ## 📐 Project Architecture  <a name = "archi"></a>
 MVVM design pattern is used as the basic architecture of the project and for the state management provider pattern is being used.
@@ -74,8 +62,6 @@ MVVM design pattern is used as the basic architecture of the project and for the
   Used by the 'Stacked Service' for routing.
 - [Dio](https://pub.dev/packages/dio)
   API handling.
-- [Sqflite](https://pub.dev/packages/sqflite)
-  Local database handling.
 - [Build Runner](https://pub.dev/packages/build_runner)
   Used as a dev dependency for generating routes.
 
@@ -91,41 +77,37 @@ MVVM design pattern is used as the basic architecture of the project and for the
 +-- release-notes.txt
 +-- lib
 |   +-- assets
-|	|	+-- fonts
-|	|	+-- icons
-|	|	+-- images
+|  |  +-- fonts
+|  |  +-- icons
+|  |  +-- images
 |   +-- core
-|	|	+-- config
-|	|	|	+-- router
-|	|	|	|	+-- router.dart
-|	|	|	+-- application.dart
-|	|	+-- constants
-|	|	+-- enums
-|	|	+-- methods
-|	|	|	+-- util.dart
-|	|	+-- models
-|	|	+-- services
-|	|	|	+-- api
-|	|	|	|	+-- api.dart
-|	|	|	|	+-- api_client.dart
-|	|	|	|	+-- api_provider.dart
-|	|	|	+-- db
-|	|	|	|	+-- db_handler.dart
-|	|	|	+-- sync
-|	|	|	|	+-- sync_service.dart
+|  |  +-- config
+|  |  |  +-- router
+|  |  |  |  +-- router.dart
+|  |  |  +-- application.dart
+|  |  +-- constants
+|  |  +-- enums
+|  |  +-- methods
+|  |  |  +-- util.dart
+|  |  +-- models
+|  |  +-- services
+|  |  |  +-- api
+|  |  |  |  +-- api.dart
+|  |  |  |  +-- api_client.dart
+|  |  |  |  +-- api_provider.dart
 |   +-- generated
 |   +-- ui
-|	|	+-- theme
-|	|	+-- views
-|	|	+-- widgets
+|  |  +-- theme
+|  |  +-- views
+|  |  +-- widgets
 |   +-- app.dart
 |   +-- locator.dart
-|	+-- provider_setup.dart
-|	+-- main_dev.dart
-|	+-- main_qa.dart
-|	+-- main_uat.dart
-|	+-- main_demo.dart
-|	+-- main_live.dart
+|  +-- provider_setup.dart
+|  +-- main_dev.dart
+|  +-- main_qa.dart
+|  +-- main_uat.dart
+|  +-- main_demo.dart
+|  +-- main_live.dart
 .
 ```
 Whole source code mainly divided in to 3 folders as 'assets', 'core' and 'ui'. 'assets' contains fonts, icons and images. 'ui' contains the screen vise views and view models and other widgets. 'core' contains all the other configurations, services, models and utility methods.
@@ -146,41 +128,41 @@ flutter run -t lib/main_qa.dart --flavor=qa
 All the UI components are basically divided in to 2 files as View and ViewModel. Basic structure of the files are as follows
 - basic_view.dart
 ```dart
-class BasicView extends ViewModelBuilderWidget<BasicViewModel> {  
-  const BasicView({Key? key}) : super(key: key);  
-  
+class BasicView extends ViewModelBuilderWidget<BasicViewModel> {
+  const BasicView({Key? key}) : super(key: key);
+
   ///Build method
-  @override  
+  @override
   Widget builder(BuildContext context, BasicViewModel viewModel, Widget? child){
-	  /// variables and methods inside the view model can be accessed
-	  /// by calling viewmodel.*   
-	  return Center(child : Text ('This is the ${viewModel.name}'));
-  }  
-  
-  /// Variables and services can be passed to the viewmodel via the contructor of 
-  /// the view model  
-  @override  
+     /// variables and methods inside the view model can be accessed
+     /// by calling viewmodel.*
+     return Center(child : Text ('This is the ${viewModel.name}'));
+  }
+
+  /// Variables and services can be passed to the viewmodel via the contructor of
+  /// the view model
+  @override
   viewModelBuilder(BuildContext context) => BasicViewModel(Provider.of(context));
-  
+
   /// Init method of the view model
-  @override  
-  void onViewModelReady(BasicViewModelviewModel) => viewModel.init();  
+  @override
+  void onViewModelReady(BasicViewModelviewModel) => viewModel.init();
 }
 ```
 - basic_view_model.dart
 
 ```dart
 class BasicViewModel extends BaseViewModel {
-	/// Variables and services declarations
-	final SecureStoreService _secureStoreService;  
-	final NavigationService _navigationService = GetIt.I.get();
-	final String name = 'Basic View';  
-	/// Constructor with passing required providers and services
-	BasicViewModel(this._secureStoreService);  
-  
-	void init(){
-	/// init method with functions to be called when view init
-	}
+   /// Variables and services declarations
+   final SecureStoreService _secureStoreService;
+   final NavigationService _navigationService = GetIt.I.get();
+   final String name = 'Basic View';
+   /// Constructor with passing required providers and services
+   BasicViewModel(this._secureStoreService);
+
+   void init(){
+   /// init method with functions to be called when view init
+   }
 }
 ```
 This pattern could be used for all the widgets and components and not only for the views. Purpose of adhering to this pattern is to increase the readability and to maintain the cleanliness of the code.
@@ -195,53 +177,53 @@ Setting up a new provider is quite easy and first step is creating a service cla
 
 - provider_setup.dart
 ```dart
-List<SingleChildWidget> providers = [  
-  ...independentServices,  
-  ...dependentServices,  
-];  
-  
-List<SingleChildWidget> independentServices = [  
-  Provider.value(value: DialogService()),  
-  Provider.value(value: SecureStoreService(const FlutterSecureStorage())),  
-  Provider.value(value: AuthenticationService()),  
-  Provider.value(value: ApiClient()),  
-	... 
-  ChangeNotifierProvider.value(value: CallHistoryService()),  
-  ChangeNotifierProvider.value(value: CallDetailingService()),  
-  ChangeNotifierProvider.value(value: CallSampleService())  
+List<SingleChildWidget> providers = [
+  ...independentServices,
+  ...dependentServices,
+];
+
+List<SingleChildWidget> independentServices = [
+  Provider.value(value: DialogService()),
+  Provider.value(value: SecureStoreService(const FlutterSecureStorage())),
+  Provider.value(value: AuthenticationService()),
+  Provider.value(value: ApiClient()),
+   ...
+  ChangeNotifierProvider.value(value: CallHistoryService()),
+  ChangeNotifierProvider.value(value: CallDetailingService()),
+  ChangeNotifierProvider.value(value: CallSampleService())
   ...
-];  
-  
-List<SingleChildWidget> dependentServices = [  
-  ProxyProvider<SecureStoreService, CallService>(  
-    update: (context, client, api) => CallService(client),  
-  ),  
-  ProxyProvider<ApiClient, ApiProvider>(  
-    update: (context, client, api) => ApiProvider(client),  
-  ),  
-  
-  ProxyProvider<ApiProvider, UserService>(  
-    update: (context, api, service) => UserService(api),  
-  dispose: (context, service) => service.dispose(),  
-  ),  
-	...
+];
+
+List<SingleChildWidget> dependentServices = [
+  ProxyProvider<SecureStoreService, CallService>(
+    update: (context, client, api) => CallService(client),
+  ),
+  ProxyProvider<ApiClient, ApiProvider>(
+    update: (context, client, api) => ApiProvider(client),
+  ),
+
+  ProxyProvider<ApiProvider, UserService>(
+    update: (context, api, service) => UserService(api),
+  dispose: (context, service) => service.dispose(),
+  ),
+   ...
 ];
 ```
 ### Routing
 Get_it router is used for the generating routes required for the navigation.
 In order to set up a new route, first, the view should be registered inside core > config > router > router.dart.
 ```dart
-@StackedApp(routes: [  
-  AdaptiveRoute(page: SplashView, initial: true),  
-  AdaptiveRoute(page: LoginView),  
-  AdaptiveRoute(page: HomeView),  
-  AdaptiveRoute(page: ContactsView),  
-  AdaptiveRoute(page: DashboardView),  
-  AdaptiveRoute(page: ExpensesView),  
-  AdaptiveRoute(page: ImageCaptureView),  
+@StackedApp(routes: [
+  AdaptiveRoute(page: SplashView, initial: true),
+  AdaptiveRoute(page: LoginView),
+  AdaptiveRoute(page: HomeView),
+  AdaptiveRoute(page: ContactsView),
+  AdaptiveRoute(page: DashboardView),
+  AdaptiveRoute(page: ExpensesView),
+  AdaptiveRoute(page: ImageCaptureView),
   ...
   /// add the new route here as a AdaptiveRoute
-])  
+])
 class $Router {}
 ```
 Then, the following build runner command needs to be executed in order to generate the other required files.
@@ -258,7 +240,7 @@ final NavigationService _navigationService = GetIt.I.get();
 _navigationService.replaceWith(Routes.homeView);
 /// Navigating to a view
 _navigationService.navigateTo(Routes.homeView);
-/// Like them there are many other methods inside the 
+/// Like them there are many other methods inside the
 /// Navigation Service class that could be used for the effective routing
 ```
 
@@ -270,68 +252,18 @@ There are 3 main files.
 - api_porvider.dart - actual implementation of the api abstract class.
 - api_client.dart - core functions for handling get, post requests and handling the responses.
 
-### Database handling
-All the Database related code is inside the lib > core > services > db > db handler.
-For now everything related to database is inside single file db_handler.dart.
-when writing new SQL queries, it is better to use the DB handler for SQLite first and then importing those statements to the dart code.
-
-### Sync
-Mobile app itself is not a individual service, this is coupled with the vantage MRIS backed as well the the web frontend. As for the ease of the users app follows a sync mechanism to keep the data updated with the backend server.
-Sync mainly consist of 2 aspects as download and upload.
-Idea is to download the data from the web backend and storing in the local database and when new data is added to the local database, those should be uploaded back to the web backend as well.
-For the ease of the process table structure of the mobile and the web backend are made similar.
-API response of download calls consist of list of objects. Each object has the same structure and the key set of that specific object is taken as the column set of the table corresponding to that object.
-So, In the source code the model, database table takes the same structure of the api response object.
 
 ### Generating model classes
 JSON response can be direclty used for generating the dart model class by 'Json to Dart Bean Action' plugin.
 
 - Open the 'Json to Dart Bean Action' plugin in the correct directory.
  <p align="center">
-  <img src="documentation/json.png" />
-</p>
+ <img src="documentation/json.png" /></p>
 
 - Then name the class and paste the api response and click 'Make' to generate the required Dart model.
  <p align="center">
-  <img src="documentation/a1.JPG" />
-</p>
+ <img src="documentation/a1.JPG" /></p>
 Now the required model class along with the fromJson() and toJson() methods are generated.
-
-### Generating SQL  queries from the Model class
-
-- After the Dart model is generated below 2 method can be added to the end of the class.
-
-```dart
-  
- String toCreateTable(){ 
-	 String createTableQuery = '"CREATE TABLE $runtimeType(_id INTEGER PRIMARY KEY AUTOINCREMENT';  
- 
-	 toJson().forEach((key, value) { 
-		 createTableQuery = '$createTableQuery, $key ${dbValType(value)}'; 
-	 }); 
-	createTableQuery = '$createTableQuery)'; 
-	Log.d('$runtimeType', createTableQuery); 
-	 return createTableQuery; 
- }  
- 
-String dbValType(dynamic val){  
-	 switch(val.runtimeType){  
-		 case String:  
-		   return 'TEXT';  
-		 case double:  
-		   return 'INTEGER';  
-		 case int:  
-		   return 'DOUBLE';  
-		 case bool:  
-		   return 'BOOLEAN';  
-		 default:  
-		   return 'TEXT';  
-	  }  
-}
-```  
-- Then call the toCreateTable() method somewhere inside the code after populating it with a json.
-- By reading the Log or debugging the sql create table query can be retrieved.
-> By implementing similar methods any SQL statement can be generated through the model class.
 
 ### Recommended coding standards
 
@@ -354,8 +286,7 @@ Commit messages are used when generating the release notes. So There is a standa
 This can be easily followed by using the git commit message helper plugin.
 
  <p align="center">
-  <img src="documentation/commit.png" />
-</p>
+ <img src="documentation/commit.png" /></p>
 
 ### Releasing a version
 Before doing a release first, all the the feature and bug fixes branches needs to be merged to the dev branch.
@@ -374,7 +305,7 @@ last number is the build number and it should be increased by 1 for each release
 Run the following command to generate the release-notes.txt file.
 ```bash
  git log --pretty="- %s (%an)" v0.4.1+25..HEAD > release-notes.txt
-``` 
+```
 Version number used here should be the previously released tag version.
 
 - This command populates the release-notes.txt file with the commit messages which were done after the previous release.
@@ -382,14 +313,21 @@ Version number used here should be the previously released tag version.
 #### Creating the tag
 After the 3 files (pubspec.yaml, release-notes.txt, CHANGELOG.md) are updated new release commit has to be made with a commit message of:
 ```
-build:(New Release) 
+build:(New Release)
 ```
 - After the build commit to dev branch, the dev branch needs to be merged in to the main branch via a merge request.
 - Then the main branch should be merged to the stable branch via a merge request.
 - Then a new tag can be created in the repository, Make sure that the tag name is the correct version number and the branch is selected as stable.
+
+```bash
+git tag -a v0.2.0 -m "Released v0.1.0"
+```
+- Then the created tag can be pushed to the repository
+```bash
+git push origin v0.2.0
+```
  <p align="center">
-  <img src="documentation/tag.png" />
-</p>
+ <img src="documentation/tag.png" /></p>
 
 #### Distributing the version via firebase
 To generate the apk, following command can be executed.
@@ -400,39 +338,30 @@ flutter build apk --flavor qa -t lib/main_qa.dart
 This command generates a apk with the current version and the selected flavor and it outputs the location of the generated apk.
 Then go the > Firebase console >  select Vantage MRIS as project > app destribution > Select the correct build flavor > upload the apk > add release notes and distribute to testers.
  <p align="center">
-  <img src="documentation/firebase.png" />
-</p>
+ <img src="documentation/firebase.png" /></p>
 
 ### Ios distribution
 After getting the Ios Developer account following procedure has to be followed for the test flight distribution.
 
 - After the successfull registration of the developer account, the ios developer account dashboard should be look like this.
  <p align="center">
-  <img src="documentation/ios1.png" />
-</p>
+ <img src="documentation/ios1.png" /></p>
 
 - First step is to create and identifier, By following the below process an identifier could be created.
  <p align="center">
-  <img src="documentation/ide1.png" />
-</p>
- <p align="center">
-  <img src="documentation/identifier1.png" />
-</p>
- <p align="center">
-  <img src="documentation/identifier2.png" />
-</p>
+ <img src="documentation/ide1.png" /></p>
+ <p align="center"> <img src="documentation/identifier1.png" /></p>
+ <p align="center"> <img src="documentation/identifier2.png" /></p>
 
 - After creating an identifier, an certificate can be created.
  <p align="center">
-  <img src="documentation/certificate1.png" />
-</p>
+ <img src="documentation/certificate1.png" /></p>
 at the end of the certificate creation process an certificate file is available to download and it should be download and saved.
 
 - Next open the keychain tool and from Files > Certificates > request a certificate and selected the downloaded file.
 - Then open up the Xcode with Runner.xcworkspace of the project.
  <p align="center">
-  <img src="documentation/xcode1.png" />
-</p>
+ <img src="documentation/xcode1.png" /></p>
 
 - Then after going to the signing and capabilities tab, select the correct team and it will detect the correct certificate.
 - Select  'any Ios device' from the device list.
@@ -440,18 +369,15 @@ at the end of the certificate creation process an certificate file is available 
 
 - Then it should open up the distribution window as follows.
  <p align="center">
-  <img src="documentation/archive1.png" />
-</p>
+ <img src="documentation/archive1.png" /></p>
 
 - First validate app and distribute the app.
 - Then this app build should be visible in the app store connect 'tesflight' account and by adding test accounts the app can be distributed among the testers.
 
-# Improvements and Suggestions <a name = "imp"></a>
-- Distributing the code of the database handler in to few files.
-- Redesigning the UIs with a help of an actual UI/UX engineer.
+# TODO <a name = "imp"></a>
+ - [ ] Creating branches for separate versions.
+
+
 
 ---
 🙂 Happy Coding ✌️
-✍️  [Danushka Ariyarathna]( https://lk.linkedin.com/in/dna-danushka)
-
-

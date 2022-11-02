@@ -23,6 +23,34 @@ dev_dependencies:
   stacked_generator: ^0.8.0+1
   build_runner: ^2.3.2
   flutter_lints: ^2.0.0
+  flutter_flavorizr: ^2.1.5
+
+flavorizr:
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+    ios:
+
+  flavors:
+    dev:
+      app:
+        name: "Flutter Starter Kit Dev"
+
+      android:
+        applicationId: "com.example.app.dev"
+
+      ios:
+        bundleId: "com.example.app.dev"
+
+    qa:
+      app:
+        name: "Flutter Starter Kit QA"
+
+      android:
+        applicationId: "com.example.app.qa"
+
+      ios:
+        bundleId: "com.example.app.qa"
 
 
 flutter:

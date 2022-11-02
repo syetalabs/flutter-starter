@@ -324,8 +324,6 @@ git tag -a v0.2.0 -m "Released v0.1.0"
 ```bash
 git push origin v0.2.0
 ```
- <p align="center">
- <img src="documentation/tag.png" /></p>
 
 #### Distributing the version via firebase
 To generate the apk, following command can be executed.

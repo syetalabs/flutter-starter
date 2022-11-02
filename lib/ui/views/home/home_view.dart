@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/ui/views/home/home_view_model.dart';
-import 'package:get_it/get_it.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
-class HomeView extends ViewModelBuilderWidget<HomeViewModel>{
+import 'home_view_model.dart';
+
+class HomeView extends ViewModelBuilderWidget<HomeViewModel> {
   HomeView({Key? key}) : super(key: key);
 
   @override
-  Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child){
+  Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter starter'),
@@ -28,18 +27,17 @@ class HomeView extends ViewModelBuilderWidget<HomeViewModel>{
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () {
           viewModel.incrementCounter();
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 
   @override
-  viewModelBuilder(BuildContext context) =>
-      HomeViewModel();
+  viewModelBuilder(BuildContext context) => HomeViewModel();
 
   @override
   void onViewModelReady(HomeViewModel viewModel) => viewModel.init();

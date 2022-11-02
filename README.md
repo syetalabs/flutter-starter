@@ -1,9 +1,7 @@
 <p align="center">
 
-<!--
-Add the Syeta Flutter logo
 <img src="documentation/logo.png" />
--->
+
 </p>
 <h1 align="center">Developer Guide</h1>
 

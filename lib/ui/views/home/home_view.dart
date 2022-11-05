@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter/ui/views/home/home_view_model.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeView extends ViewModelBuilderWidget<HomeViewModel>{
   HomeView({Key? key}) : super(key: key);
@@ -17,8 +17,8 @@ class HomeView extends ViewModelBuilderWidget<HomeViewModel>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(
+              AppLocalizations.of(context)!.title,
             ),
             Text(
               viewModel.counter.toString(),

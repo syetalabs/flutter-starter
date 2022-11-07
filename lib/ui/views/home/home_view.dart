@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/ui/views/home/home_view_model.dart';
 import 'package:stacked/stacked.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'home_view_model.dart';
-
-class HomeView extends ViewModelBuilderWidget<HomeViewModel> {
-  HomeView({Key? key}) : super(key: key);
+class HomeView extends ViewModelBuilderWidget<HomeViewModel>{
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter starter'),
+        actions: [
+          IconButton(onPressed: (){
+            viewModel.goForm();
+          }, icon: const Icon(Icons.assignment_outlined)),
+        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(
+              AppLocalizations.of(context)!.title,
             ),
             Text(
               viewModel.counter.toString(),

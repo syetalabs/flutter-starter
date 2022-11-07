@@ -7,7 +7,7 @@ class HomeView extends ViewModelBuilderWidget<HomeViewModel>{
   const HomeView({Key? key}) : super(key: key);
 
   @override
-  Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child){
+  Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter starter'),
@@ -32,18 +32,17 @@ class HomeView extends ViewModelBuilderWidget<HomeViewModel>{
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () {
           viewModel.incrementCounter();
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 
   @override
-  viewModelBuilder(BuildContext context) =>
-      HomeViewModel();
+  viewModelBuilder(BuildContext context) => HomeViewModel();
 
   @override
   void onViewModelReady(HomeViewModel viewModel) => viewModel.init();
